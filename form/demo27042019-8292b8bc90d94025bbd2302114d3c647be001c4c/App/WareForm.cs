@@ -19,7 +19,9 @@ namespace App
 
         private void фToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form furnitura = new FurnituraForm();
+            furnitura.Show();
+            this.Close();
         }
 
         private void тканиToolStripMenuItem_Click(object sender, EventArgs e)

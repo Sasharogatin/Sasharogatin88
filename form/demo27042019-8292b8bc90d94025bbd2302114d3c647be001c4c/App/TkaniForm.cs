@@ -20,6 +20,7 @@ namespace App
         WareForm ware;
         DataSet ds;
         SqlDataAdapter sda;
+        DataSet changes;
 
         public TkaniForm()
         {
@@ -71,12 +72,25 @@ namespace App
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DataSet changes = this.ds.GetChanges();
-            if(changes !=null)
+            changes = ds.GetChanges();
+            if (changes != null)
             {
-                int updatesRows = this.sda.Update(changes);
-                this.ds.AcceptChanges();
+                SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+                builder.GetInsertCommand();
+                int updatesRows = sda.Update(changes, "tkani");
+                ds.AcceptChanges();
             }
+            this.LoadList();
+            MessageBox.Show("Успешно!");
+        }
+
+        private void LoadList()
+        {
+            throw new NotImplementedException();
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
